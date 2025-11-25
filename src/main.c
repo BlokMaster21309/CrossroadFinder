@@ -16,8 +16,7 @@ typedef enum {
     QUAD_SQUARE = 5,
     QUINT_BLOB = 6,
     QUINT_CROSS = 7,
-    OCTO_OUTLINE = 8,
-    NOVEM_SQUARE = 9
+    QUINT_C = 8
 } CrossroadShape;
 
 const char *SHAPE_NAMES[] = {
@@ -29,8 +28,7 @@ const char *SHAPE_NAMES[] = {
     "QUAD_SQUARE",
     "QUINT_BLOB",
     "QUINT_CROSS",
-    "OCTO_OUTLINE",
-    "NOVEM_SQUARE"
+    "QUINT_C"
 };
 
 #define SHAPE_COUNT (sizeof(SHAPE_NAMES) / sizeof(SHAPE_NAMES[0]))
@@ -219,43 +217,49 @@ Shape QUINT_BLOB_SHAPES[] = {
 };
 
 Offset QUINT_CROSS_OFFSETS[] = {
-    { -19, -19 },
+    { 19, 0 },
     { -19, 0 },
-    { -19, 19 },
-    { -38, 0 }
+    { 0, 19 },
+    { 0, -19 }
 };
 
 Shape QUINT_CROSS_SHAPES[] = {
     { QUINT_CROSS_OFFSETS }
 };
 
-Offset OCTO_OUTLINE_OFFSETS[] = {
+Offset QUINT_C_NN_OFFSETS[] = {
     { 0, 19 },
-    { 0, 38 },
     { 19, 0 },
-    { 19, 38 },
     { 38, 0 },
-    { 38, 19 },
-    { 38, 38 }
+    { 38, 19 }
 };
 
-Shape OCTO_OUTLINE_SHAPES[] = {
-    { OCTO_OUTLINE_OFFSETS }
-};
-
-Offset NOVEM_SQUARE_OFFSETS[] = {
-    { 0, 19 },
+Offset QUINT_C_NP_OFFSETS[] = {
     { 0, 38 },
     { 19, 0 },
     { 19, 19 },
-    { 19, 38 },
-    { 38, 0 },
-    { 38, 19 },
-    { 38, 38 }
+    { 19, 38 }
 };
 
-Shape NOVEM_SQUARE_SHAPES[] = {
-    { NOVEM_SQUARE_OFFSETS }
+Offset QUINT_C_PP_OFFSETS[] = {
+    { 38, 0 },
+    { 0, 19 },
+    { 19, 19 },
+    { 39, 19 }
+};
+
+Offset QUINT_C_PN_OFFSETS[] = {
+    { 19, 0 },
+    { 0, 19 },
+    { 0, 38 },
+    { 19, 38 }
+};
+
+Shape QUINT_C_SHAPES[] = {
+    { QUINT_C_NN_OFFSETS },
+    { QUINT_C_NP_OFFSETS },
+    { QUINT_C_PP_OFFSETS },
+    { QUINT_C_PN_OFFSETS }
 };
 
 ShapeVariants SHAPES[] = {
@@ -266,9 +270,8 @@ ShapeVariants SHAPES[] = {
     { TRI_CORNER_SHAPES, 2, 4 },
     { QUAD_SQUARE_SHAPES, 3, 1 },
     { QUINT_BLOB_SHAPES, 4, 8 },
-    { QUINT_CROSS_SHAPES, 4, 1},
-    { OCTO_OUTLINE_SHAPES, 7, 1},
-    { NOVEM_SQUARE_SHAPES, 8, 1}
+    { QUINT_CROSS_SHAPES, 4, 1 },
+    { QUINT_C_SHAPES, 4, 4 },
 };
 
 typedef struct {
