@@ -215,18 +215,18 @@ Shape QUINT_BLOB_SHAPES[] = {
     { QUINT_BLOB_4_OFFSETS },
     { QUINT_BLOB_5_OFFSETS },
     { QUINT_BLOB_6_OFFSETS },
-    { QUINT_BLOB_7_OFFSETS },
+    { QUINT_BLOB_7_OFFSETS }
 };
 
-Offset QUNIT_CROSS_OFFSETS[] = {
-    { 0, 19 },
-    { 19, 0 },
-    { 0, -19 },
-    { -19, 0 }
+Offset QUINT_CROSS_OFFSETS[] = {
+    { -19, -19 },
+    { -19, 0 },
+    { -19, 19 },
+    { -38, 0 }
 };
 
 Shape QUINT_CROSS_SHAPES[] = {
-    { QUNIT_CROSS_OFFSETS }
+    { QUINT_CROSS_OFFSETS }
 };
 
 Offset OCTO_OUTLINE_OFFSETS[] = {
