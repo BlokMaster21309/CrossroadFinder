@@ -9,22 +9,28 @@
 
 typedef enum {
     DOUBLE = 0,
-    TRIPLE_LINE = 1,
+    TRI_LINE = 1,
     QUAD_LINE = 2,
     QUINT_LINE = 3,
-    TRIPLE_CORNER = 4,
+    TRI_CORNER = 4,
     QUAD_SQUARE = 5,
-    QUINT_BLOB = 6
+    QUINT_BLOB = 6,
+    QUINT_CROSS = 7,
+    OCTO_OUTLINE = 8,
+    NOVEM_SQUARE = 9
 } CrossroadShape;
 
 const char *SHAPE_NAMES[] = {
     "DOUBLE",
-    "TRIPLE_LINE",
+    "TRI_LINE",
     "QUAD_LINE",
     "QUINT_LINE",
-    "TRIPLE_CORNER",
+    "TRI_CORNER",
     "QUAD_SQUARE",
-    "QUINT_BLOB"
+    "QUINT_BLOB",
+    "QUINT_CROSS",
+    "OCTO_OUTLINE",
+    "NOVEM_SQUARE"
 };
 
 #define SHAPE_COUNT (sizeof(SHAPE_NAMES) / sizeof(SHAPE_NAMES[0]))
@@ -57,19 +63,19 @@ Shape DOUBLE_SHAPES[] = {
     { DOUBLE_Z_OFFSETS }
 };
 
-Offset TRIPLE_LINE_X_OFFSETS[] = {
+Offset TRI_LINE_X_OFFSETS[] = {
     { 19, 0 },
     { 38, 0 }
 };
 
-Offset TRIPLE_LINE_Z_OFFSETS[] = {
+Offset TRI_LINE_Z_OFFSETS[] = {
     { 0, 19 },
     { 0, 38 }
 };
 
-Shape TRIPLE_LINE_SHAPES[] = {
-    { TRIPLE_LINE_X_OFFSETS },
-    { TRIPLE_LINE_Z_OFFSETS }
+Shape TRI_LINE_SHAPES[] = {
+    { TRI_LINE_X_OFFSETS },
+    { TRI_LINE_Z_OFFSETS }
 };
 
 Offset QUAD_LINE_X_OFFSETS[] = {
@@ -108,31 +114,31 @@ Shape QUINT_LINE_SHAPES[] = {
     { QUINT_LINE_Z_OFFSETS }
 };
 
-Offset TRIPLE_CORNER_NN_OFFSETS[] = {
+Offset TRI_CORNER_NN_OFFSETS[] = {
     { 19, 0 },
     { 19, -19 }
 };
 
-Offset TRIPLE_CORNER_NP_OFFSETS[] = {
+Offset TRI_CORNER_NP_OFFSETS[] = {
     { 19, 0 },
     { 19, 19 }
 };
 
-Offset TRIPLE_CORNER_PP_OFFSETS[] = {
+Offset TRI_CORNER_PP_OFFSETS[] = {
     { 19, 0 },
     { 0, 19 }
 };
 
-Offset TRIPLE_CORNER_PN_OFFSETS[] = {
+Offset TRI_CORNER_PN_OFFSETS[] = {
     { 0, 19 },
     { 19, 19 }
 };
 
-Shape TRIPLE_CORNER_SHAPES[] = {
-    { TRIPLE_CORNER_NN_OFFSETS },
-    { TRIPLE_CORNER_NP_OFFSETS },
-    { TRIPLE_CORNER_PP_OFFSETS },
-    { TRIPLE_CORNER_PN_OFFSETS }
+Shape TRI_CORNER_SHAPES[] = {
+    { TRI_CORNER_NN_OFFSETS },
+    { TRI_CORNER_NP_OFFSETS },
+    { TRI_CORNER_PP_OFFSETS },
+    { TRI_CORNER_PN_OFFSETS }
 };
 
 Offset QUAD_SQUARE_OFFSETS[] = {
@@ -212,14 +218,57 @@ Shape QUINT_BLOB_SHAPES[] = {
     { QUINT_BLOB_7_OFFSETS },
 };
 
+Offset QUNIT_CROSS_OFFSETS[] = {
+    { 0, 19 },
+    { 19, 0 },
+    { 0, -19 },
+    { -19, 0 }
+};
+
+Shape QUINT_CROSS_SHAPES[] = {
+    { QUNIT_CROSS_OFFSETS }
+};
+
+Offset OCTO_OUTLINE_OFFSETS[] = {
+    { 0, 19 },
+    { 0, 38 },
+    { 19, 0 },
+    { 19, 38 },
+    { 38, 0 },
+    { 38, 19 },
+    { 38, 38 }
+};
+
+Shape OCTO_OUTLINE_SHAPES[] = {
+    { OCTO_OUTLINE_OFFSETS }
+};
+
+Offset NOVEM_SQUARE_OFFSETS[] = {
+    { 0, 19 },
+    { 0, 38 },
+    { 19, 0 },
+    { 19, 19 },
+    { 19, 38 },
+    { 38, 0 },
+    { 38, 19 },
+    { 38, 38 }
+};
+
+Shape NOVEM_SQUARE_SHAPES[] = {
+    { NOVEM_SQUARE_OFFSETS }
+};
+
 ShapeVariants SHAPES[] = {
     { DOUBLE_SHAPES, 1, 2 },
-    { TRIPLE_LINE_SHAPES, 2, 2 },
+    { TRI_LINE_SHAPES, 2, 2 },
     { QUAD_LINE_SHAPES, 3, 2 },
     { QUINT_LINE_SHAPES, 4, 2 },
-    { TRIPLE_CORNER_SHAPES, 2, 4 },
+    { TRI_CORNER_SHAPES, 2, 4 },
     { QUAD_SQUARE_SHAPES, 3, 1 },
-    { QUINT_BLOB_SHAPES, 4, 8 }
+    { QUINT_BLOB_SHAPES, 4, 8 },
+    { QUINT_CROSS_SHAPES, 4, 1},
+    { OCTO_OUTLINE_SHAPES, 7, 1},
+    { NOVEM_SQUARE_SHAPES, 8, 1}
 };
 
 typedef struct {
@@ -286,7 +335,7 @@ void processRegion(InputData *inputData, FortressGenerator *fortressGenerator, i
                     }
                 }
                 if (good >= shapeVariants->offsetsCount) {
-                    printf("Found a good shape at /tp %i %i %i\n", mainBox->minX, mainBox->minY, mainBox->minZ);
+                    printf("/tp %i %i %i\n", mainBox->minX, mainBox->minY, mainBox->minZ);
                     return;
                 }
             }
