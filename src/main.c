@@ -13,10 +13,13 @@ typedef enum {
     QUAD_LINE = 2,
     QUINT_LINE = 3,
     TRI_CORNER = 4,
-    QUAD_SQUARE = 5,
-    QUINT_BLOB = 6,
-    QUINT_CROSS = 7,
-    QUINT_C = 8
+    QUAD_CORNER = 5,
+    QUINT_CORNER = 6,
+    QUAD_SQUARE = 7,
+    QUINT_BLOB = 8,
+    QUINT_C = 9,
+    QUINT_Z = 10,
+    QUINT_H = 11
 } CrossroadShape;
 
 const char *SHAPE_NAMES[] = {
@@ -25,10 +28,13 @@ const char *SHAPE_NAMES[] = {
     "QUAD_LINE",
     "QUINT_LINE",
     "TRI_CORNER",
+    "QUAD_CORNER",
+    "QUINT_CORNER",
     "QUAD_SQUARE",
     "QUINT_BLOB",
-    "QUINT_CROSS",
-    "QUINT_C"
+    "QUINT_C",
+    "QUINT_Z",
+    "QUINT_H"
 };
 
 #define SHAPE_COUNT (sizeof(SHAPE_NAMES) / sizeof(SHAPE_NAMES[0]))
@@ -112,31 +118,125 @@ Shape QUINT_LINE_SHAPES[] = {
     { QUINT_LINE_Z_OFFSETS }
 };
 
-Offset TRI_CORNER_NN_OFFSETS[] = {
-    { 19, 0 },
-    { 19, -19 }
-};
-
-Offset TRI_CORNER_NP_OFFSETS[] = {
-    { 19, 0 },
-    { 19, 19 }
-};
-
 Offset TRI_CORNER_PP_OFFSETS[] = {
     { 19, 0 },
     { 0, 19 }
 };
 
 Offset TRI_CORNER_PN_OFFSETS[] = {
-    { 0, 19 },
-    { 19, 19 }
+    { 19, 0 },
+    { 0, -19 }
+};
+
+Offset TRI_CORNER_NN_OFFSETS[] = {
+    { -19, 0 },
+    { 0, -19 }
+};
+
+Offset TRI_CORNER_NP_OFFSETS[] = {
+    { -19, 0 },
+    { 0, 19 }
 };
 
 Shape TRI_CORNER_SHAPES[] = {
-    { TRI_CORNER_NN_OFFSETS },
-    { TRI_CORNER_NP_OFFSETS },
     { TRI_CORNER_PP_OFFSETS },
-    { TRI_CORNER_PN_OFFSETS }
+    { TRI_CORNER_PN_OFFSETS },
+    { TRI_CORNER_NN_OFFSETS },
+    { TRI_CORNER_NP_OFFSETS }
+};
+
+Offset QUAD_CORNER_PPR_OFFSETS[] = {
+    { 0, 19 },
+    { 0, 38 },
+    { 19, 0 }
+};
+
+Offset QUAD_CORNER_PNR_OFFSETS[] = {
+    { 19, 0 },
+    { 38, 0 },
+    { 0, -19 }
+};
+
+Offset QUAD_CORNER_NNR_OFFSETS[] = {
+    { 0, -19 },
+    { 0, -38 },
+    { -19, 0 }
+};
+
+Offset QUAD_CORNER_NPR_OFFSETS[] = {
+    { -19, 0 },
+    { -38, 0 },
+    { 0, 19 }
+};
+
+Offset QUAD_CORNER_PPL_OFFSETS[] = {
+    { 0, 19 },
+    { 0, 38 },
+    { -19, 0 }
+};
+
+Offset QUAD_CORNER_PNL_OFFSETS[] = {
+    { 19, 0 },
+    { 38, 0 },
+    { 0, 19 }
+};
+
+Offset QUAD_CORNER_NNL_OFFSETS[] = {
+    { 0, -19 },
+    { 0, -38 },
+    { 19, 0 }
+};
+
+Offset QUAD_CORNER_NPL_OFFSETS[] = {
+    { -19, 0 },
+    { -38, 0 },
+    { 0, -19 }
+};
+
+Shape QUAD_CORNER_SHAPES[] = {
+    { QUAD_CORNER_PPR_OFFSETS },
+    { QUAD_CORNER_PNR_OFFSETS },
+    { QUAD_CORNER_NNR_OFFSETS },
+    { QUAD_CORNER_NPR_OFFSETS },
+    { QUAD_CORNER_PPL_OFFSETS },
+    { QUAD_CORNER_PNL_OFFSETS },
+    { QUAD_CORNER_NNL_OFFSETS },
+    { QUAD_CORNER_NPL_OFFSETS }
+};
+
+Offset QUINT_CORNER_PP_OFFSETS[] = {
+    { 19, 0 },
+    { 38, 0 },
+    { 0, 19 },
+    { 0, 38 }
+};
+
+Offset QUINT_CORNER_PN_OFFSETS[] = {
+    { 19, 0 },
+    { 38, 0 },
+    { 0, -19 },
+    { 0, -38 }
+};
+
+Offset QUINT_CORNER_NN_OFFSETS[] = {
+    { -19, 0 },
+    { -38, 0 },
+    { 0, -19 },
+    { 0, -38 }
+};
+
+Offset QUINT_CORNER_NP_OFFSETS[] = {
+    { -19, 0 },
+    { -38, 0 },
+    { 0, 19 },
+    { 0, 38 }
+};
+
+Shape QUINT_CORNER_SHAPES[] = {
+    { QUINT_CORNER_PP_OFFSETS },
+    { QUINT_CORNER_PN_OFFSETS },
+    { QUINT_CORNER_NN_OFFSETS },
+    { QUINT_CORNER_NP_OFFSETS }
 };
 
 Offset QUAD_SQUARE_OFFSETS[] = {
@@ -216,50 +316,141 @@ Shape QUINT_BLOB_SHAPES[] = {
     { QUINT_BLOB_7_OFFSETS }
 };
 
-Offset QUINT_CROSS_OFFSETS[] = {
-    { 19, 0 },
-    { -19, 0 },
-    { 0, 19 },
-    { 0, -19 }
-};
-
-Shape QUINT_CROSS_SHAPES[] = {
-    { QUINT_CROSS_OFFSETS }
-};
-
-Offset QUINT_C_NN_OFFSETS[] = {
-    { 0, 19 },
-    { 19, 0 },
-    { 38, 0 },
-    { 38, 19 }
-};
-
-Offset QUINT_C_NP_OFFSETS[] = {
-    { 0, 38 },
-    { 19, 0 },
-    { 19, 19 },
-    { 19, 38 }
-};
-
 Offset QUINT_C_PP_OFFSETS[] = {
-    { 38, 0 },
     { 0, 19 },
     { 19, 19 },
-    { 39, 19 }
+    { 0, -19 },
+    { 19, -19 }
 };
 
 Offset QUINT_C_PN_OFFSETS[] = {
     { 19, 0 },
+    { 19, -19 },
+    { -19, 0 },
+    { -19, -19 }
+};
+
+Offset QUINT_C_NN_OFFSETS[] = {
     { 0, 19 },
+    { -19, 19 },
+    { 0, -19 },
+    { -19, -19 }
+};
+
+Offset QUINT_C_NP_OFFSETS[] = {
+    { 19, 0 },
+    { 19, 19 },
+    { -19, 0 },
+    { -19, 19 }
+};
+
+Shape QUINT_C_SHAPES[] = {
+    { QUINT_C_PP_OFFSETS },
+    { QUINT_C_PN_OFFSETS },
+    { QUINT_C_NN_OFFSETS },
+    { QUINT_C_NP_OFFSETS }
+};
+
+Offset QUINT_Z_0_OFFSETS[] = {
+    { -19, 19 },
+    { -19, 0 },
+    { 19, 0 },
+    { 19, -19 }
+};
+
+Offset QUINT_Z_1_OFFSETS[] = {
+    { 19, 19 },
+    { 0, 19 },
+    { 0, -19 },
+    { -19, -19 }
+};
+
+Offset QUINT_Z_2_OFFSETS[] = {
+    { 19, 19 },
+    { 19, 0 },
+    { -19, 0 },
+    { -19, -19 }
+};
+
+Offset QUINT_Z_3_OFFSETS[] = {
+    { 19, -19 },
+    { 0, -19 },
+    { 0, 19 },
+    { -19, 19 }
+};
+
+Shape QUINT_Z_SHAPES[] = {
+    { QUINT_Z_0_OFFSETS },
+    { QUINT_Z_1_OFFSETS },
+    { QUINT_Z_2_OFFSETS },
+    { QUINT_Z_3_OFFSETS }
+};
+
+Offset QUINT_H_0_OFFSETS[] = {
+    { 0, 19 },
+    { 0, -19 },
+    { -38, 0 },
+    { -38, 19 }
+};
+
+Offset QUINT_H_1_OFFSETS[] = {
+    { 19, 0 },
+    { -19, 0 },
     { 0, 38 },
     { 19, 38 }
 };
 
-Shape QUINT_C_SHAPES[] = {
-    { QUINT_C_NN_OFFSETS },
-    { QUINT_C_NP_OFFSETS },
-    { QUINT_C_PP_OFFSETS },
-    { QUINT_C_PN_OFFSETS }
+Offset QUINT_H_2_OFFSETS[] = {
+    { 0, 19 },
+    { 0, -19 },
+    { 38, 0 },
+    { 38, -19 }
+};
+
+Offset QUINT_H_3_OFFSETS[] = {
+    { 19, 0 },
+    { -19, 0 },
+    { 0, -38 },
+    { -19, -38 }
+};
+
+Offset QUINT_H_4_OFFSETS[] = {
+    { 0, 19 },
+    { 0, -19 },
+    { 38, 0 },
+    { 38, 19 }
+};
+
+Offset QUINT_H_5_OFFSETS[] = {
+    { 19, 0 },
+    { -19, 0 },
+    { 0, -38 },
+    { 19, -38 }
+};
+
+Offset QUINT_H_6_OFFSETS[] = {
+    { 0, 19 },
+    { 0, -19 },
+    { -38, 0 },
+    { -38, -19 }
+};
+
+Offset QUINT_H_7_OFFSETS[] = {
+    { 19, 0 },
+    { -19, 0 },
+    { 0, 38 },
+    { -19, 38 }
+};
+
+Shape QUINT_H_SHAPES[] = {
+    { QUINT_H_0_OFFSETS },
+    { QUINT_H_1_OFFSETS },
+    { QUINT_H_2_OFFSETS },
+    { QUINT_H_3_OFFSETS },
+    { QUINT_H_4_OFFSETS },
+    { QUINT_H_5_OFFSETS },
+    { QUINT_H_6_OFFSETS },
+    { QUINT_H_7_OFFSETS }
 };
 
 ShapeVariants SHAPES[] = {
@@ -268,10 +459,13 @@ ShapeVariants SHAPES[] = {
     { QUAD_LINE_SHAPES, 3, 2 },
     { QUINT_LINE_SHAPES, 4, 2 },
     { TRI_CORNER_SHAPES, 2, 4 },
+    { QUAD_CORNER_SHAPES, 3, 8 },
+    { QUINT_CORNER_SHAPES, 4, 4 },
     { QUAD_SQUARE_SHAPES, 3, 1 },
     { QUINT_BLOB_SHAPES, 4, 8 },
-    { QUINT_CROSS_SHAPES, 4, 1 },
     { QUINT_C_SHAPES, 4, 4 },
+    { QUINT_Z_SHAPES, 4, 4 },
+    { QUINT_H_SHAPES, 4, 8 }
 };
 
 typedef struct {
@@ -351,7 +545,7 @@ bool getInputData(InputData *inputData) {
         return 0;
     }
 
-    if (!getI64Number("numeric world seed", &inputData->structureSeed, false, 0, INT64_MIN, INT64_MAX)) {
+    if (!getI64Number("numeric structure seed (usually same as world seed)", &inputData->structureSeed, false, 0, INT64_MIN, INT64_MAX)) {
         return 0;
     }
 

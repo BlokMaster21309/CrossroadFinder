@@ -33,7 +33,7 @@ void fortressGenerator_generateForRegion(FortressGenerator *fortressGenerator, u
         random_setRegionSeed(&random, structureSeed, regionX, regionZ, salt);
         int32_t chunkX = regionX * 27 + random_nextIntNotPow2(&random, 27 - 4);
         int32_t chunkZ = regionZ * 27 + random_nextIntNotPow2(&random, 27 - 4);
-        if (version >= v1_18) {
+        if (version >= v1_18_2) {
             random_setCarverSeed(&random, structureSeed, chunkX, chunkZ);
         }
         if (random_nextIntNotPow2(&random, 5) < 2) {

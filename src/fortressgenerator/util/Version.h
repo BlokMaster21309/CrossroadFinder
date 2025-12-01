@@ -4,7 +4,7 @@ typedef enum {
     v1_7,
     v1_13,
     v1_16_1,
-    v1_18,
+    v1_18_2,
     VERSION_COUNT
 } Version;
 
